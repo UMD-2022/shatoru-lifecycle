@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>shatoru_backend package &mdash; shatoru-backend 0.0.post1.dev1+gbaac962 documentation</title>
+  <title>shatoru_backend package &mdash; shatoru-backend 0.0.post1.dev1+g6efae82 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -33,7 +33,7 @@
             shatoru-backend
           </a>
               <div class="version">
-                0.0.post1.dev1+gbaac962
+                0.0.post1.dev1+g6efae82
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -57,6 +57,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-shatoru_backend.config">shatoru_backend.config module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-shatoru_backend.logger">shatoru_backend.logger module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#shatoru_backend.logger.InterceptHandler"><code class="docutils literal notranslate"><span class="pre">InterceptHandler</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#shatoru_backend.logger.LogConfig"><code class="docutils literal notranslate"><span class="pre">LogConfig</span></code></a></li>
@@ -120,7 +121,7 @@
 <li class="toctree-l4"><a class="reference internal" href="shatoru_backend.apps.core.html#module-shatoru_backend.apps.core.admin">shatoru_backend.apps.core.admin module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shatoru_backend.apps.core.html#module-shatoru_backend.apps.core.apps">shatoru_backend.apps.core.apps module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shatoru_backend.apps.core.html#shatoru-backend-apps-core-models-module">shatoru_backend.apps.core.models module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="shatoru_backend.apps.core.html#module-shatoru_backend.apps.core.permissions">shatoru_backend.apps.core.permissions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shatoru_backend.apps.core.html#shatoru-backend-apps-core-permissions-module">shatoru_backend.apps.core.permissions module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shatoru_backend.apps.core.html#module-shatoru_backend.apps.core.tests">shatoru_backend.apps.core.tests module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shatoru_backend.apps.core.html#module-shatoru_backend.apps.core.views">shatoru_backend.apps.core.views module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shatoru_backend.apps.core.html#module-shatoru_backend.apps.core">Module contents</a></li>
@@ -171,18 +172,48 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
+<section id="module-shatoru_backend.config">
+<span id="shatoru-backend-config-module"></span><h2>shatoru_backend.config module<a class="headerlink" href="#module-shatoru_backend.config" title="Permalink to this heading"></a></h2>
+</section>
 <section id="module-shatoru_backend.logger">
 <span id="shatoru-backend-logger-module"></span><h2>shatoru_backend.logger module<a class="headerlink" href="#module-shatoru_backend.logger" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="shatoru_backend.logger.InterceptHandler">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">shatoru_backend.logger.</span></span><span class="sig-name descname"><span class="pre">InterceptHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/shatoru_backend/logger.html#InterceptHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#shatoru_backend.logger.InterceptHandler" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/logging.html#logging.Handler" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Handler</span></code></a></p>
+<p>A custom logging handler that intercepts messages from the root logger and forwards
+them to Loguru for processing.</p>
+<p>This class extends the built-in <cite>logging.Handler</cite> class and overrides the <cite>emit</cite>
+method to translate messages to Loguru logging events.</p>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">emit(record</span></span></dt>
+<dd><p>LogRecord) -&gt; None: Translates a LogRecord object to a Loguru
+logging event and passes it on for processing.</p>
+</dd></dl>
+
+<dl>
+<dt>Usage:</dt><dd><p># Create a new instance of the InterceptHandler class
+handler = InterceptHandler()</p>
+<p># Add the handler to the root logger
+logging.root.handlers = [handler]</p>
+<p># Configure Loguru as needed
+logger.add(…)</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="shatoru_backend.logger.InterceptHandler.emit">
 <span class="sig-name descname"><span class="pre">emit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/logging.html#logging.LogRecord" title="(in Python v3.11)"><span class="pre">LogRecord</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/shatoru_backend/logger.html#InterceptHandler.emit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#shatoru_backend.logger.InterceptHandler.emit" title="Permalink to this definition"></a></dt>
-<dd><p>Do whatever it takes to actually log the specified logging record.</p>
-<p>This version is intended to be implemented by subclasses and so
-raises a NotImplementedError.</p>
+<dd><p>Translate a LogRecord object to a Loguru logging event and pass it on for
+processing.</p>
+<p>This method overrides the <cite>emit</cite> method in the <cite>logging.Handler</cite> class and is
+called whenever a new logging message is received by the root logger.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>record</strong> (<em>LogRecord</em>) – A logging record object containing details about the
+logged message.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -191,15 +222,55 @@ raises a NotImplementedError.</p>
 <dt class="sig sig-object py" id="shatoru_backend.logger.LogConfig">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">shatoru_backend.logger.</span></span><span class="sig-name descname"><span class="pre">LogConfig</span></span><a class="reference internal" href="../_modules/shatoru_backend/logger.html#LogConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#shatoru_backend.logger.LogConfig" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Class responsible for configuring logging for the application.</p>
+<p>This class sets up logging for the application by intercepting all log messages and
+sending them to the Loguru logger. It sets up a console logger and file loggers for
+various logging levels (info, warning, error, critical, and debug if in debug mode).</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="shatoru_backend.logger.LogConfig.formatter">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">formatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Dict" title="(in Python v3.11)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Any" title="(in Python v3.11)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/shatoru_backend/logger.html#LogConfig.formatter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#shatoru_backend.logger.LogConfig.formatter" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">formatter(record</span></span></dt>
+<dd><p>Dict[str, Any]) -&gt; str: Returns the format for the log message</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="shatoru_backend.logger.LogConfig.setup">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/shatoru_backend/logger.html#LogConfig.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#shatoru_backend.logger.LogConfig.setup" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/shatoru_backend/logger.html#LogConfig.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#shatoru_backend.logger.LogConfig.setup" title="Permalink to this definition"></a></dt>
+<dd><p>Sets up the logging configuration for the application.</p>
+</dd></dl>
+
+<dl class="simple">
+<dt>Usage:</dt><dd><p>To use this class, simply call the <cite>setup</cite> method, which will set up the logging
+configuration for the application.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="shatoru_backend.logger.LogConfig.formatter">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">formatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Dict" title="(in Python v3.11)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Any" title="(in Python v3.11)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/shatoru_backend/logger.html#LogConfig.formatter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#shatoru_backend.logger.LogConfig.formatter" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the format for the log message.</p>
+<p>This method takes a log record as input and returns the format for the log
+message. The format includes the timestamp, log level, logger name, function
+name, line number, and message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>record</strong> (<em>Dict</em><em>[</em><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><em>Any</em><em>]</em>) – The log record.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The format for the log message.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/shatoru_backend/logger.html#LogConfig.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<dd><p>Set up logging configuration.</p>
+<p>This method sets up the root logger and adds handlers to it, as well as to
+specific loggers for different levels. The logging configuration is based
+on the DEBUG_MODE and the formatter specified in the <cite>formatter</cite> method.</p>
+</dd></dl>
 
 </dd></dl>
 

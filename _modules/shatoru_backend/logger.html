@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>shatoru_backend.logger &mdash; shatoru-backend 0.0.post1.dev1+gbaac962 documentation</title>
+  <title>shatoru_backend.logger &mdash; shatoru-backend 0.0.post1.dev1+g6efae82 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -30,7 +30,7 @@
             shatoru-backend
           </a>
               <div class="version">
-                0.0.post1.dev1+gbaac962
+                0.0.post1.dev1+g6efae82
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -75,35 +75,63 @@
              
   <h1>Source code for shatoru_backend.logger</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">distutils.util</span> <span class="kn">import</span> <span class="n">strtobool</span>
 <span class="kn">from</span> <span class="nn">logging</span> <span class="kn">import</span> <span class="n">LogRecord</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
 
 <span class="kn">from</span> <span class="nn">loguru</span> <span class="kn">import</span> <span class="n">logger</span>
 
-<span class="c1"># ====== Set directories ======</span>
-<span class="n">APP_ROOT</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">absolute</span><span class="p">()))</span>
-<span class="n">DEBUG_MODE</span> <span class="o">=</span> <span class="n">strtobool</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">,</span> <span class="s2">&quot;False&quot;</span><span class="p">))</span>
-<span class="n">LOG_PATH</span> <span class="o">=</span> <span class="n">APP_ROOT</span> <span class="o">/</span> <span class="s2">&quot;logs&quot;</span>
+<span class="kn">from</span> <span class="nn">shatoru_backend.config</span> <span class="kn">import</span> <span class="n">DEBUG_MODE</span><span class="p">,</span> <span class="n">LOG_PATH</span>
 
 
 <div class="viewcode-block" id="InterceptHandler"><a class="viewcode-back" href="../../api/shatoru_backend.html#shatoru_backend.logger.InterceptHandler">[docs]</a><span class="k">class</span> <span class="nc">InterceptHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Handler</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A custom logging handler that intercepts messages from the root logger and forwards</span>
+<span class="sd">    them to Loguru for processing.</span>
+
+<span class="sd">    This class extends the built-in `logging.Handler` class and overrides the `emit`</span>
+<span class="sd">    method to translate messages to Loguru logging events.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        emit(record: LogRecord) -&gt; None: Translates a LogRecord object to a Loguru</span>
+<span class="sd">            logging event and passes it on for processing.</span>
+
+<span class="sd">    Usage:</span>
+<span class="sd">        # Create a new instance of the InterceptHandler class</span>
+<span class="sd">        handler = InterceptHandler()</span>
+
+<span class="sd">        # Add the handler to the root logger</span>
+<span class="sd">        logging.root.handlers = [handler]</span>
+
+<span class="sd">        # Configure Loguru as needed</span>
+<span class="sd">        logger.add(...)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="InterceptHandler.emit"><a class="viewcode-back" href="../../api/shatoru_backend.html#shatoru_backend.logger.InterceptHandler.emit">[docs]</a>    <span class="k">def</span> <span class="nf">emit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">:</span> <span class="n">LogRecord</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Translate a LogRecord object to a Loguru logging event and pass it on for</span>
+<span class="sd">        processing.</span>
+
+<span class="sd">        This method overrides the `emit` method in the `logging.Handler` class and is</span>
+<span class="sd">        called whenever a new logging message is received by the root logger.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            record (LogRecord): A logging record object containing details about the</span>
+<span class="sd">                logged message.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Get corresponding Loguru level if it exists</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">level</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">level</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">levelname</span><span class="p">)</span><span class="o">.</span><span class="n">name</span>
         <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
             <span class="n">level</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">levelno</span>
 
-        <span class="c1"># Find caller from where originated the logged message</span>
+        <span class="c1"># Find caller from where the logged message originated</span>
         <span class="n">frame</span><span class="p">,</span> <span class="n">depth</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">currentframe</span><span class="p">(),</span> <span class="mi">2</span>
         <span class="k">while</span> <span class="n">frame</span><span class="o">.</span><span class="n">f_code</span><span class="o">.</span><span class="n">co_filename</span> <span class="o">==</span> <span class="n">logging</span><span class="o">.</span><span class="vm">__file__</span><span class="p">:</span>
             <span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">f_back</span> <span class="ow">or</span> <span class="n">frame</span>
             <span class="n">depth</span> <span class="o">+=</span> <span class="mi">1</span>
 
+        <span class="c1"># Translate the log message to a Loguru event and forward it for processing.</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">opt</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="n">depth</span><span class="p">,</span> <span class="n">exception</span><span class="o">=</span><span class="n">record</span><span class="o">.</span><span class="n">exc_info</span><span class="p">)</span><span class="o">.</span><span class="n">log</span><span class="p">(</span>
             <span class="n">level</span><span class="p">,</span>
             <span class="n">record</span><span class="o">.</span><span class="n">getMessage</span><span class="p">(),</span>
@@ -111,32 +139,68 @@
 
 
 <div class="viewcode-block" id="LogConfig"><a class="viewcode-back" href="../../api/shatoru_backend.html#shatoru_backend.logger.LogConfig">[docs]</a><span class="k">class</span> <span class="nc">LogConfig</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class responsible for configuring logging for the application.</span>
+
+<span class="sd">    This class sets up logging for the application by intercepting all log messages and</span>
+<span class="sd">    sending them to the Loguru logger. It sets up a console logger and file loggers for</span>
+<span class="sd">    various logging levels (info, warning, error, critical, and debug if in debug mode).</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        formatter(record: Dict[str, Any]) -&gt; str: Returns the format for the log message</span>
+<span class="sd">        setup() -&gt; None: Sets up the logging configuration for the application.</span>
+
+<span class="sd">    Usage:</span>
+<span class="sd">        To use this class, simply call the `setup` method, which will set up the logging</span>
+<span class="sd">        configuration for the application.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="LogConfig.formatter"><a class="viewcode-back" href="../../api/shatoru_backend.html#shatoru_backend.logger.LogConfig.formatter">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">formatter</span><span class="p">(</span><span class="n">record</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the format for the log message.</span>
+
+<span class="sd">        This method takes a log record as input and returns the format for the log</span>
+<span class="sd">        message. The format includes the timestamp, log level, logger name, function</span>
+<span class="sd">        name, line number, and message.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            record (Dict[str, Any]): The log record.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The format for the log message.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Log message format</span>
         <span class="n">FORMAT</span> <span class="o">=</span> <span class="s2">&quot;&lt;green&gt;{time:YYYY-MM-DD HH:mm:ss}&lt;/green&gt; | &lt;level&gt;</span><span class="si">{level: ^8}</span><span class="s2">&lt;/level&gt; | &lt;cyan&gt;</span><span class="si">{name}</span><span class="s2">&lt;/cyan&gt;:&lt;cyan&gt;</span><span class="si">{function}</span><span class="s2">&lt;/cyan&gt;:&lt;cyan&gt;</span><span class="si">{line}</span><span class="s2">&lt;/cyan&gt;&quot;</span>  <span class="c1"># noqa: E501</span>
-        <span class="k">if</span> <span class="n">record</span><span class="p">[</span><span class="s2">&quot;extra&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
-            <span class="n">FORMAT</span> <span class="o">+=</span> <span class="s2">&quot; - [&lt;magenta&gt;</span><span class="si">{extra[tag]}</span><span class="s2">&lt;/magenta&gt;]&quot;</span>
-        <span class="k">if</span> <span class="n">record</span><span class="p">[</span><span class="s2">&quot;extra&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;session_id&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
-            <span class="n">FORMAT</span> <span class="o">+=</span> <span class="s2">&quot; - [&lt;magenta&gt;</span><span class="si">{extra[session_id]}</span><span class="s2">&lt;/magenta&gt;]&quot;</span>
+
+        <span class="c1"># Add the message to the format</span>
         <span class="n">FORMAT</span> <span class="o">+=</span> <span class="s2">&quot; - &lt;level&gt;</span><span class="si">{message}</span><span class="s2">&lt;/level&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
 
         <span class="k">return</span> <span class="n">FORMAT</span></div>
 
 <div class="viewcode-block" id="LogConfig.setup"><a class="viewcode-back" href="../../api/shatoru_backend.html#shatoru_backend.logger.LogConfig.setup">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">setup</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set up logging configuration.</span>
+
+<span class="sd">        This method sets up the root logger and adds handlers to it, as well as to</span>
+<span class="sd">        specific loggers for different levels. The logging configuration is based</span>
+<span class="sd">        on the DEBUG_MODE and the formatter specified in the `formatter` method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Determine logging level based on the DEBUG_MODE</span>
         <span class="n">level</span> <span class="o">=</span> <span class="s2">&quot;DEBUG&quot;</span> <span class="k">if</span> <span class="n">DEBUG_MODE</span> <span class="k">else</span> <span class="s2">&quot;INFO&quot;</span>
 
-        <span class="c1"># === Intercept everything at the root logger ===</span>
+        <span class="c1"># Add InterceptHandler to root logger</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">handlers</span> <span class="o">=</span> <span class="p">[</span><span class="n">InterceptHandler</span><span class="p">()]</span>
+
+        <span class="c1"># Set logging level for root logger</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
 
-        <span class="c1"># === Remove every other logger&#39;s handlers</span>
-        <span class="c1"># and propagate to root logger ===</span>
-        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">logging</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">loggerDict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>  <span class="c1"># type: ignore</span>
+        <span class="c1"># Remove any other handlers from loggers and propagate to root logger</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">logging</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">loggerDict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">handlers</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">propagate</span> <span class="o">=</span> <span class="kc">True</span>
 
-        <span class="c1"># === Log to terminal ===</span>
+        <span class="c1"># Configure logger with specified handlers</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
             <span class="n">handlers</span><span class="o">=</span><span class="p">[</span>
                 <span class="p">{</span>
@@ -147,7 +211,7 @@
             <span class="p">],</span>
         <span class="p">)</span>
 
-        <span class="c1"># === Log to specific log files ===</span>
+        <span class="c1"># Add file handlers for specific log levels</span>
         <span class="n">levels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;critical&quot;</span><span class="p">,</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="s2">&quot;warning&quot;</span><span class="p">,</span> <span class="s2">&quot;info&quot;</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">DEBUG_MODE</span><span class="p">:</span>
             <span class="n">levels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;debug&quot;</span><span class="p">)</span>

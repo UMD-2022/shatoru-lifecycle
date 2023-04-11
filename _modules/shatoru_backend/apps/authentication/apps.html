@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>shatoru_backend.apps.authentication.apps &mdash; shatoru-backend 0.0.post1.dev1+gbaac962 documentation</title>
+  <title>shatoru_backend.apps.authentication.apps &mdash; shatoru-backend 0.0.post1.dev1+g6efae82 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -30,7 +30,7 @@
             shatoru-backend
           </a>
               <div class="version">
-                0.0.post1.dev1+gbaac962
+                0.0.post1.dev1+g6efae82
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -78,10 +78,34 @@
 
 
 <div class="viewcode-block" id="AuthenticationConfig"><a class="viewcode-back" href="../../../../api/shatoru_backend.apps.authentication.html#shatoru_backend.apps.authentication.apps.AuthenticationConfig">[docs]</a><span class="k">class</span> <span class="nc">AuthenticationConfig</span><span class="p">(</span><span class="n">AppConfig</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    AppConfig for the authentication app.</span>
+
+<span class="sd">    This AppConfig is responsible for configuring the authentication app of the Shatoru</span>
+<span class="sd">    backend Django project. It defines the default auto field as</span>
+<span class="sd">    `django.db.models.BigAutoField`, and sets the name of the app as</span>
+<span class="sd">    `shatoru_backend.apps.authentication`. Additionally, it imports the signals module</span>
+<span class="sd">    to ensure that the signals defined in it are registered when the app is ready</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        default_auto_field (str): The default auto field for the app, set to</span>
+<span class="sd">            `django.db.models.BigAutoField`.</span>
+<span class="sd">        name (str): The name of the app, set to</span>
+<span class="sd">            `shatoru_backend.apps.authentication`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">default_auto_field</span> <span class="o">=</span> <span class="s2">&quot;django.db.models.BigAutoField&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;shatoru_backend.apps.authentication&quot;</span>
 
 <div class="viewcode-block" id="AuthenticationConfig.ready"><a class="viewcode-back" href="../../../../api/shatoru_backend.apps.authentication.html#shatoru_backend.apps.authentication.apps.AuthenticationConfig.ready">[docs]</a>    <span class="k">def</span> <span class="nf">ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method called when the app is ready.</span>
+
+<span class="sd">        This method is called when the app is ready, and is responsible for importing</span>
+<span class="sd">        the signals module to ensure that the signals defined in it are registered.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Import the signals module to ensure that the signals defined in it are</span>
+        <span class="c1"># registered when the app is ready.</span>
         <span class="kn">import</span> <span class="nn">shatoru_backend.apps.authentication.signals</span>  <span class="c1"># noqa: F401</span></div></div>
 </pre></div>
 

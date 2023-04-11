@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>shatoru_backend.apps.authentication package &mdash; shatoru-backend 0.0.post1.dev1+gbaac962 documentation</title>
+  <title>shatoru_backend.apps.authentication package &mdash; shatoru-backend 0.0.post1.dev1+g6efae82 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -33,7 +33,7 @@
             shatoru-backend
           </a>
               <div class="version">
-                0.0.post1.dev1+gbaac962
+                0.0.post1.dev1+g6efae82
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -57,6 +57,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="shatoru_backend.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shatoru_backend.html#module-shatoru_backend.config">shatoru_backend.config module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="shatoru_backend.html#module-shatoru_backend.logger">shatoru_backend.logger module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="shatoru_backend.html#module-shatoru_backend.manage">shatoru_backend.manage module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="shatoru_backend.html#module-shatoru_backend">Module contents</a></li>
@@ -123,20 +124,52 @@
 <dt class="sig sig-object py" id="shatoru_backend.apps.authentication.apps.AuthenticationConfig">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">shatoru_backend.apps.authentication.apps.</span></span><span class="sig-name descname"><span class="pre">AuthenticationConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_module</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/shatoru_backend/apps/authentication/apps.html#AuthenticationConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#shatoru_backend.apps.authentication.apps.AuthenticationConfig" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AppConfig</span></code></p>
+<p>AppConfig for the authentication app.</p>
+<p>This AppConfig is responsible for configuring the authentication app of the Shatoru
+backend Django project. It defines the default auto field as
+<cite>django.db.models.BigAutoField</cite>, and sets the name of the app as
+<cite>shatoru_backend.apps.authentication</cite>. Additionally, it imports the signals module
+to ensure that the signals defined in it are registered when the app is ready</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="shatoru_backend.apps.authentication.apps.AuthenticationConfig.default_auto_field">
-<span class="sig-name descname"><span class="pre">default_auto_field</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'django.db.models.BigAutoField'</span></em><a class="headerlink" href="#shatoru_backend.apps.authentication.apps.AuthenticationConfig.default_auto_field" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">default_auto_field</span></span><a class="headerlink" href="#shatoru_backend.apps.authentication.apps.AuthenticationConfig.default_auto_field" title="Permalink to this definition"></a></dt>
+<dd><p>The default auto field for the app, set to
+<cite>django.db.models.BigAutoField</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="shatoru_backend.apps.authentication.apps.AuthenticationConfig.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'shatoru_backend.apps.authentication'</span></em><a class="headerlink" href="#shatoru_backend.apps.authentication.apps.AuthenticationConfig.name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#shatoru_backend.apps.authentication.apps.AuthenticationConfig.name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the app, set to
+<cite>shatoru_backend.apps.authentication</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">default_auto_field</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'django.db.models.BigAutoField'</span></em><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'shatoru_backend.apps.authentication'</span></em><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="shatoru_backend.apps.authentication.apps.AuthenticationConfig.ready">
 <span class="sig-name descname"><span class="pre">ready</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/shatoru_backend/apps/authentication/apps.html#AuthenticationConfig.ready"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#shatoru_backend.apps.authentication.apps.AuthenticationConfig.ready" title="Permalink to this definition"></a></dt>
-<dd><p>Override this method in subclasses to run code when Django starts.</p>
+<dd><p>Method called when the app is ready.</p>
+<p>This method is called when the app is ready, and is responsible for importing
+the signals module to ensure that the signals defined in it are registered.</p>
 </dd></dl>
 
 </dd></dl>
@@ -147,14 +180,17 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="shatoru_backend.apps.authentication.signals.password_reset_token_created">
 <span class="sig-prename descclassname"><span class="pre">shatoru_backend.apps.authentication.signals.</span></span><span class="sig-name descname"><span class="pre">password_reset_token_created</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sender</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reset_password_token</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/shatoru_backend/apps/authentication/signals.html#password_reset_token_created"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#shatoru_backend.apps.authentication.signals.password_reset_token_created" title="Permalink to this definition"></a></dt>
-<dd><p>Handles password reset tokens
-When a token is created, an e-mail needs to be sent to the user
-:param sender: View Class that sent the signal
-:param instance: View Instance that sent the signal
-:param reset_password_token: Token Model Object
-:param args:
-:param kwargs:
-:return:</p>
+<dd><p>Signal receiver function that sends a password reset email to the user who
+requested the reset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sender</strong> – The sender of the signal.</p></li>
+<li><p><strong>instance</strong> – The instance that sent the signal.</p></li>
+<li><p><strong>reset_password_token</strong> – The password reset token that was created.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

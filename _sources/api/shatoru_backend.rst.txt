@@ -13,6 +13,14 @@ Subpackages
 Submodules
 ----------
 
+shatoru\_backend.config module
+------------------------------
+
+.. automodule:: shatoru_backend.config
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 shatoru\_backend.logger module
 ------------------------------
 

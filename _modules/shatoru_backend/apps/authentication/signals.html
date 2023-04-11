@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>shatoru_backend.apps.authentication.signals &mdash; shatoru-backend 0.0.post1.dev1+gbaac962 documentation</title>
+  <title>shatoru_backend.apps.authentication.signals &mdash; shatoru-backend 0.0.post1.dev1+g6efae82 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -30,7 +30,7 @@
             shatoru-backend
           </a>
               <div class="version">
-                0.0.post1.dev1+gbaac962
+                0.0.post1.dev1+g6efae82
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -81,6 +81,7 @@
 <span class="kn">from</span> <span class="nn">django_rest_passwordreset.signals</span> <span class="kn">import</span> <span class="n">reset_password_token_created</span>
 
 
+<span class="c1"># This function is called when a reset password token is created</span>
 <div class="viewcode-block" id="password_reset_token_created"><a class="viewcode-back" href="../../../../api/shatoru_backend.apps.authentication.html#shatoru_backend.apps.authentication.signals.password_reset_token_created">[docs]</a><span class="nd">@receiver</span><span class="p">(</span><span class="n">reset_password_token_created</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">password_reset_token_created</span><span class="p">(</span>
     <span class="n">sender</span><span class="p">,</span>
@@ -90,17 +91,17 @@
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Handles password reset tokens</span>
-<span class="sd">    When a token is created, an e-mail needs to be sent to the user</span>
-<span class="sd">    :param sender: View Class that sent the signal</span>
-<span class="sd">    :param instance: View Instance that sent the signal</span>
-<span class="sd">    :param reset_password_token: Token Model Object</span>
-<span class="sd">    :param args:</span>
-<span class="sd">    :param kwargs:</span>
-<span class="sd">    :return:</span>
+<span class="sd">    Signal receiver function that sends a password reset email to the user who</span>
+<span class="sd">    requested the reset.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        sender: The sender of the signal.</span>
+<span class="sd">        instance: The instance that sent the signal.</span>
+<span class="sd">        reset_password_token: The password reset token that was created.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO: Move this to a different thread</span>
-    <span class="c1"># create context for the email template</span>
+    <span class="c1"># TODO: Move this to a different thread for better performance</span>
+
+    <span class="c1"># Create context for the email template</span>
     <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">reset_password_token</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">first_name</span>
         <span class="ow">or</span> <span class="n">reset_password_token</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
@@ -108,11 +109,11 @@
         <span class="s2">&quot;reset_password_token&quot;</span><span class="p">:</span> <span class="n">reset_password_token</span><span class="o">.</span><span class="n">key</span><span class="p">,</span>
     <span class="p">}</span>
 
-    <span class="c1"># render email text</span>
+    <span class="c1"># Render email content for both HTML and plaintext formats</span>
     <span class="n">email_html_message</span> <span class="o">=</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s2">&quot;email/user_reset_password.html&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
     <span class="n">email_plaintext_message</span> <span class="o">=</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s2">&quot;email/user_reset_password.txt&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
 
-    <span class="c1"># send an e-mail to the user</span>
+    <span class="c1"># Send an email with the reset password link to the user</span>
     <span class="n">msg</span> <span class="o">=</span> <span class="n">EmailMultiAlternatives</span><span class="p">(</span>
         <span class="n">subject</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Password Reset for </span><span class="si">{</span><span class="n">context</span><span class="p">[</span><span class="s1">&#39;customer_portal&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="n">body</span><span class="o">=</span><span class="n">email_plaintext_message</span><span class="p">,</span>

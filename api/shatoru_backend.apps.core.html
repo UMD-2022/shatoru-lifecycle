@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>shatoru_backend.apps.core package &mdash; shatoru-backend 0.0.post1.dev1+gbaac962 documentation</title>
+  <title>shatoru_backend.apps.core package &mdash; shatoru-backend 0.0.post1.dev1+g6efae82 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -33,7 +33,7 @@
             shatoru-backend
           </a>
               <div class="version">
-                0.0.post1.dev1+gbaac962
+                0.0.post1.dev1+g6efae82
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -57,6 +57,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="shatoru_backend.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shatoru_backend.html#module-shatoru_backend.config">shatoru_backend.config module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="shatoru_backend.html#module-shatoru_backend.logger">shatoru_backend.logger module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="shatoru_backend.html#module-shatoru_backend.manage">shatoru_backend.manage module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="shatoru_backend.html#module-shatoru_backend">Module contents</a></li>
@@ -132,14 +133,37 @@
 <dt class="sig sig-object py" id="shatoru_backend.apps.core.apps.CoreConfig">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">shatoru_backend.apps.core.apps.</span></span><span class="sig-name descname"><span class="pre">CoreConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_module</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/shatoru_backend/apps/core/apps.html#CoreConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#shatoru_backend.apps.core.apps.CoreConfig" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AppConfig</span></code></p>
+<p>AppConfig for the core app.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="shatoru_backend.apps.core.apps.CoreConfig.default_auto_field">
-<span class="sig-name descname"><span class="pre">default_auto_field</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'django.db.models.BigAutoField'</span></em><a class="headerlink" href="#shatoru_backend.apps.core.apps.CoreConfig.default_auto_field" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">default_auto_field</span></span><a class="headerlink" href="#shatoru_backend.apps.core.apps.CoreConfig.default_auto_field" title="Permalink to this definition"></a></dt>
+<dd><p>Default auto field for models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="shatoru_backend.apps.core.apps.CoreConfig.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'shatoru_backend.apps.core'</span></em><a class="headerlink" href="#shatoru_backend.apps.core.apps.CoreConfig.name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#shatoru_backend.apps.core.apps.CoreConfig.name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of the app.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">default_auto_field</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'django.db.models.BigAutoField'</span></em><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'shatoru_backend.apps.core'</span></em><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -148,38 +172,8 @@
 <section id="shatoru-backend-apps-core-models-module">
 <h2>shatoru_backend.apps.core.models module<a class="headerlink" href="#shatoru-backend-apps-core-models-module" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-shatoru_backend.apps.core.permissions">
-<span id="shatoru-backend-apps-core-permissions-module"></span><h2>shatoru_backend.apps.core.permissions module<a class="headerlink" href="#module-shatoru_backend.apps.core.permissions" title="Permalink to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="shatoru_backend.apps.core.permissions.IsAdminOrReadOnly">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">shatoru_backend.apps.core.permissions.</span></span><span class="sig-name descname"><span class="pre">IsAdminOrReadOnly</span></span><a class="reference internal" href="../_modules/shatoru_backend/apps/core/permissions.html#IsAdminOrReadOnly"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#shatoru_backend.apps.core.permissions.IsAdminOrReadOnly" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BasePermission</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="shatoru_backend.apps.core.permissions.IsAdminOrReadOnly.has_permission">
-<span class="sig-name descname"><span class="pre">has_permission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/shatoru_backend/apps/core/permissions.html#IsAdminOrReadOnly.has_permission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#shatoru_backend.apps.core.permissions.IsAdminOrReadOnly.has_permission" title="Permalink to this definition"></a></dt>
-<dd><p>Return <cite>True</cite> if permission is granted, <cite>False</cite> otherwise.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="shatoru_backend.apps.core.permissions.IsDriverOwner">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">shatoru_backend.apps.core.permissions.</span></span><span class="sig-name descname"><span class="pre">IsDriverOwner</span></span><a class="reference internal" href="../_modules/shatoru_backend/apps/core/permissions.html#IsDriverOwner"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#shatoru_backend.apps.core.permissions.IsDriverOwner" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BasePermission</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="shatoru_backend.apps.core.permissions.IsDriverOwner.has_object_permission">
-<span class="sig-name descname"><span class="pre">has_object_permission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/shatoru_backend/apps/core/permissions.html#IsDriverOwner.has_object_permission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#shatoru_backend.apps.core.permissions.IsDriverOwner.has_object_permission" title="Permalink to this definition"></a></dt>
-<dd><p>Return <cite>True</cite> if permission is granted, <cite>False</cite> otherwise.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="shatoru_backend.apps.core.permissions.IsDriverOwner.has_permission">
-<span class="sig-name descname"><span class="pre">has_permission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/shatoru_backend/apps/core/permissions.html#IsDriverOwner.has_permission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#shatoru_backend.apps.core.permissions.IsDriverOwner.has_permission" title="Permalink to this definition"></a></dt>
-<dd><p>Return <cite>True</cite> if permission is granted, <cite>False</cite> otherwise.</p>
-</dd></dl>
-
-</dd></dl>
-
+<section id="shatoru-backend-apps-core-permissions-module">
+<h2>shatoru_backend.apps.core.permissions module<a class="headerlink" href="#shatoru-backend-apps-core-permissions-module" title="Permalink to this heading"></a></h2>
 </section>
 <section id="module-shatoru_backend.apps.core.tests">
 <span id="shatoru-backend-apps-core-tests-module"></span><h2>shatoru_backend.apps.core.tests module<a class="headerlink" href="#module-shatoru_backend.apps.core.tests" title="Permalink to this heading"></a></h2>

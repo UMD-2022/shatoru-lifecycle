@@ -9,6 +9,7 @@ Subpackages
 
    shatoru_backend.apps.user.api
    shatoru_backend.apps.user.migrations
+   shatoru_backend.apps.user.tests
 
 Submodules
 ----------

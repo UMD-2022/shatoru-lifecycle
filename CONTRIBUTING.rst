@@ -2,7 +2,7 @@
 Contributing
 ============
 
-Welcome to ``shatoru-backend`` contributor's guide.
+Welcome to ``shatoru-lifecycle`` contributor's guide.
 
 This document focuses on getting any potential contributor familiarized
 with the development processes, but `other kinds of contributions`_ are also
@@ -21,7 +21,7 @@ guidelines.
 Issue Reports
 =============
 
-If you experience bugs or general issues with ``shatoru-backend``, please have a look
+If you experience bugs or general issues with ``shatoru-lifecycle``, please have a look
 on the `issue tracker`_. If you don't see anything useful there, please feel
 free to fire an issue report.
 

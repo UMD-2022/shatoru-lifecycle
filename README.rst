@@ -1,6 +1,6 @@
-===============
-shatoru-backend
-===============
+=================
+shatoru-lifecycle
+=================
 
 .. image:: https://github.com/UMD-2022/shatoru-lifecycle/actions/workflows/test-all.yaml/badge.svg
     :target: https://github.com/UMD-2022/shatoru-lifecycle/actions/workflows/test-all.yaml
@@ -24,7 +24,7 @@ shatoru-backend
 
 ::
 
-   A mobile application to keep up-to-date with the Shuttle
+   This is a Python project quality guidelines
 
 Prerequisites
 -------------
@@ -47,16 +47,16 @@ system.
 If not then first `download <https://www.python.org/downloads/>`__ and
 install the appropriate version of python in your system.
 
-Conda
-~~~~~
+Virtual Environment
+~~~~~~~~~~~~~~~~~~~
 
-You can download miniconda from
-`here <https://docs.conda.io/en/latest/miniconda.html>`__. Check the
-conda version using this command after your installation.
+Before you start coding, we recommend creating an isolated `virtual
+environment`_ to avoid any problems with your installed Python packages.
+This can easily be done via either |virtualenv|_::
 
-.. code:: bash
-
-   conda --version
+    pip install virtualenv
+    virtualenv .venv
+    source .venv/bin/activate
 
 PostgreSQL
 ~~~~~~~~~~
@@ -94,14 +94,15 @@ After that, create a conda virtual environment
 
 .. code:: bash
 
-   conda create --name shatoru-backend python=3.10 -y
+   virtualenv .venv
+
 
 Once the installations have been completed activate the virtual
 environment that you just created.
 
 .. code:: bash
 
-   conda activate shatoru-backend
+   source .venv/bin/activate
 
 Always remember to activate your virtual environment before running the
 backend server.
@@ -114,6 +115,43 @@ below to setup your backend and start the server
    make init
    make server
 
+Tests
+-----
+
+Run the following command to install the test dependencies::
+
+   pip install -e ".[test]"
+
+You can now run the unit tests via `pytest`::
+
+   pytest
+
+The test files are under tests directory under shatoru_backend.
+
+Run the following command to install dependencies for load test::
+
+   pip install locust
+
+Ypu can now run the command
+
+   locust -f locustfiles --class-picker
+
+Navigate to `http://localhost:8089 <http://localhost:8089>`_
+
+The test files are under tests directory under shatoru_backend.
+
+Documentation
+-------------
+
+You will need tox to generate your documentation::
+
+   pip install tox
+
+You can now generate the documentation using the following command::
+
+   tox -e docs
+
+The documentations would be generated in `docs/_build/html`. You can open the `index.html` file in your browser to view the generated documentation.
 
 Other useful commands
 ~~~~~~~~~~~~~~~~~~~~~
@@ -123,12 +161,6 @@ Other useful commands
 
    code ~/.zshrc
    alias python="python3"
-
-.. to create a virtual environment
-.. code:: bash
-
-   pip install virtualenv
-   python -m venv .venv
 
 .. to activate the virtual environment
 .. code:: bash
@@ -164,3 +196,8 @@ Other useful commands
 .. code:: bash
 
    pip show pytest
+
+.. |virtualenv| replace:: ``virtualenv``
+
+.. _virtual environment: https://realpython.com/python-virtual-environments-a-primer/
+.. _virtualenv: https://virtualenv.pypa.io/en/stable/

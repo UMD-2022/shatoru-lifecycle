@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG", cast=bool)
+DEBUG = config("DEBUG", cast=bool, default=False)
 
 ALLOWED_HOSTS: List[str] = ["*"]
 
@@ -92,11 +92,11 @@ WSGI_APPLICATION = "shatoru_backend.base.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "HOST": config("POSTGRES_HOST"),
-        "PORT": config("POSTGRES_PORT", cast=int),
-        "USER": config("POSTGRES_USER"),
-        "PASSWORD": config("POSTGRES_PASSWORD"),
-        "NAME": config("POSTGRES_DB"),
+        "HOST": config("POSTGRES_HOST", default="localhost"),
+        "PORT": config("POSTGRES_PORT", cast=int, default=5432),
+        "USER": config("POSTGRES_USER", default="postgres"),
+        "PASSWORD": config("POSTGRES_PASSWORD", default="postgres"),
+        "NAME": config("POSTGRES_DB", default="public"),
     },
 }
 
@@ -164,11 +164,11 @@ REST_FRAMEWORK = {
 
 # Email Notification
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = config("EMAIL_HOST")
-EMAIL_PORT = config("EMAIL_PORT", cast=int)
-EMAIL_HOST_USER = config("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
-EMAIL_USE_TLS = config("EMAIL_USE_TLS", cast=bool)
+EMAIL_HOST = config("EMAIL_HOST", default="smtp.gmail.com")
+EMAIL_PORT = config("EMAIL_PORT", cast=int, default=587)
+EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="")
+EMAIL_USE_TLS = config("EMAIL_USE_TLS", cast=bool, default=True)
 
 # Password Reset
 DJANGO_REST_PASSWORDRESET_TOKEN_CONFIG = {

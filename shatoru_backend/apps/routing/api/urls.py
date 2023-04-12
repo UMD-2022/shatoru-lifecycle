@@ -11,7 +11,7 @@ from rest_framework.routers import DefaultRouter
 from shatoru_backend.apps.routing.api.views import StopViewSet
 
 router = DefaultRouter()
-router.register("", StopViewSet)
+router.register("", StopViewSet, basename="stop")
 
 # Define urlpatterns as a list of URL patterns and resolvers for the app's APIs.
 # Here, we only have one API endpoint registered with the router, but we can add more

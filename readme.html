@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>shatoru-backend &mdash; shatoru-backend 0.0.post1.dev1+g3ebfd3e documentation</title>
+  <title>shatoru-lifecycle &mdash; shatoru-backend 0.0.post1.dev1+g5433788 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -18,7 +18,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Contributing" href="contributing.html" />
-    <link rel="prev" title="shatoru-backend" href="index.html" /> 
+    <link rel="prev" title="shatoru-lifecycle" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -33,7 +33,7 @@
             shatoru-backend
           </a>
               <div class="version">
-                0.0.post1.dev1+g3ebfd3e
+                0.0.post1.dev1+g5433788
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -47,12 +47,14 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#python">Python</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#conda">Conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#virtual-environment">Virtual Environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#postgresql">PostgreSQL</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gnu-make">GNU Make</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tests">Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#other-useful-commands">Other useful commands</a></li>
 </ul>
 </li>
@@ -79,7 +81,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">shatoru-backend</li>
+      <li class="breadcrumb-item active">shatoru-lifecycle</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/readme.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -89,14 +91,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="shatoru-backend">
-<span id="readme"></span><h1>shatoru-backend<a class="headerlink" href="#shatoru-backend" title="Permalink to this heading"></a></h1>
+  <section id="shatoru-lifecycle">
+<span id="readme"></span><h1>shatoru-lifecycle<a class="headerlink" href="#shatoru-lifecycle" title="Permalink to this heading"></a></h1>
 <a class="reference external image-reference" href="https://github.com/UMD-2022/shatoru-lifecycle/actions/workflows/test-all.yaml"><img alt="Tests" src="https://github.com/UMD-2022/shatoru-lifecycle/actions/workflows/test-all.yaml/badge.svg" /></a>
 <a class="reference external image-reference" href="https://UMD-2022.github.io/shatoru-lifecycle/"><img alt="Documentation" src="https://github.com/UMD-2022/shatoru-lifecycle/actions/workflows/documentation.yaml/badge.svg" /></a>
 <a class="reference external image-reference" href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg" /></a>
 <a class="reference external image-reference" href="https://pycqa.github.io/isort/"><img alt="imports: isort" src="https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&amp;labelColor=ef8336" /></a>
 <a class="reference external image-reference" href="https://github.com/pre-commit/pre-commit"><img alt="pre-commit" src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&amp;logoColor=white" /></a>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="n">mobile</span> <span class="n">application</span> <span class="n">to</span> <span class="n">keep</span> <span class="n">up</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">date</span> <span class="k">with</span> <span class="n">the</span> <span class="n">Shuttle</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">Python</span> <span class="n">project</span> <span class="n">quality</span> <span class="n">guidelines</span>
 </pre></div>
 </div>
 <section id="prerequisites">
@@ -117,12 +119,14 @@ system.</p>
 <p>If not then first <a class="reference external" href="https://www.python.org/downloads/">download</a> and
 install the appropriate version of python in your system.</p>
 </section>
-<section id="conda">
-<h3>Conda<a class="headerlink" href="#conda" title="Permalink to this heading"></a></h3>
-<p>You can download miniconda from
-<a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">here</a>. Check the
-conda version using this command after your installation.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>--version
+<section id="virtual-environment">
+<h3>Virtual Environment<a class="headerlink" href="#virtual-environment" title="Permalink to this heading"></a></h3>
+<p>Before you start coding, we recommend creating an isolated <a class="reference external" href="https://realpython.com/python-virtual-environments-a-primer/">virtual
+environment</a> to avoid any problems with your installed Python packages.
+This can easily be done via either <a class="reference external" href="https://virtualenv.pypa.io/en/stable/"><code class="docutils literal notranslate"><span class="pre">virtualenv</span></code></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">virtualenv</span>
+<span class="n">virtualenv</span> <span class="o">.</span><span class="n">venv</span>
+<span class="n">source</span> <span class="o">.</span><span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
 </pre></div>
 </div>
 </section>
@@ -152,12 +156,12 @@ command below:</p>
 </pre></div>
 </div>
 <p>After that, create a conda virtual environment</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>shatoru-backend<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10<span class="w"> </span>-y
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>virtualenv<span class="w"> </span>.venv
 </pre></div>
 </div>
 <p>Once the installations have been completed activate the virtual
 environment that you just created.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>shatoru-backend
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
 </pre></div>
 </div>
 <p>Always remember to activate your virtual environment before running the
@@ -168,14 +172,44 @@ below to setup your backend and start the server</p>
 make<span class="w"> </span>server
 </pre></div>
 </div>
+</section>
+<section id="tests">
+<h2>Tests<a class="headerlink" href="#tests" title="Permalink to this heading"></a></h2>
+<p>Run the following command to install the test dependencies:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;.[test]&quot;</span>
+</pre></div>
+</div>
+<p>You can now run the unit tests via <cite>pytest</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pytest</span>
+</pre></div>
+</div>
+<p>The test files are under tests directory under shatoru_backend.</p>
+<p>Run the following command to install dependencies for load test:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">locust</span>
+</pre></div>
+</div>
+<p>Ypu can now run the command</p>
+<blockquote>
+<div><p>locust -f locustfiles –class-picker</p>
+</div></blockquote>
+<p>Navigate to <cite>http://localhost:8089</cite></p>
+<p>The test files are under tests directory under shatoru_backend.</p>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading"></a></h2>
+<p>You will need tox to generate your documentation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">tox</span>
+</pre></div>
+</div>
+<p>You can now generate the documentation using the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tox</span> <span class="o">-</span><span class="n">e</span> <span class="n">docs</span>
+</pre></div>
+</div>
+<p>The documentations would be generated in <cite>docs/_build/html</cite>. You can open the <cite>index.html</cite> file in your browser to view the generated documentation.</p>
 <section id="other-useful-commands">
 <h3>Other useful commands<a class="headerlink" href="#other-useful-commands" title="Permalink to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>code<span class="w"> </span>~/.zshrc
 <span class="nb">alias</span><span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="s2">&quot;python3&quot;</span>
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>virtualenv
-python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
 </pre></div>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>./.venv/bin/activate
@@ -210,7 +244,7 @@ pre-commit<span class="w"> </span>autoupdate
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="shatoru-backend" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="shatoru-lifecycle" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

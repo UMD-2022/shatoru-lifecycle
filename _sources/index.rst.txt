@@ -1,8 +1,8 @@
-===============
-shatoru-backend
-===============
+=================
+shatoru-lifecycle
+=================
 
-This is the documentation of **shatoru-backend**.
+This is the documentation of **shatoru-lifecycle**.
 
 
 Contents

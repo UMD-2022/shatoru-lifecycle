@@ -136,7 +136,7 @@ Ypu can now run the command
 
    locust -f locustfiles --class-picker
 
-Navigate to `http://localhost:8089 <http://localhost:8089>`_
+Navigate to `http://localhost:8089`
 
 The test files are under tests directory under shatoru_backend.
 
